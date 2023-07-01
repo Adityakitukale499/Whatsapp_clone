@@ -24,13 +24,6 @@ const Chat = (props) => {
             setMassages([...massages,{'reciever':mgs}])
 
         }
-        
-        let data = JSON.parse(localStorage.getItem(chat))
-            console.log(massages);
-        if(data !== null){
-            data.chat = massages
-            localStorage.setItem(data.id,JSON.stringify(data))
-        }
         document.querySelector('#inp').value = ''
     }
     useEffect(() => {
@@ -48,6 +41,14 @@ const Chat = (props) => {
             console.log(massages);
         
     },[chat])
+    useEffect(() => {
+        let data = JSON.parse(localStorage.getItem(chat))
+        console.log(massages);
+        if (data !== null) {
+            data.chat = massages
+            localStorage.setItem(data.id, JSON.stringify(data))
+        }
+    }, [massages])
     return (
         <div className='chat'>
             <div className="chat_header">
